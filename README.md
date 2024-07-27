@@ -1,0 +1,1 @@
+# Desi Social Media Application build using React, TypeScript, Tailwind CSS, Firebase, and Shadcn UI
