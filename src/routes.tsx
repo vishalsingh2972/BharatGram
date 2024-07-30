@@ -1,4 +1,4 @@
-// '/login' and '/signup' will be open/public routes, rest all routes will be protected routes i.e we will only be able to access them after logging in
+// '/login' and '/signup' will be open/public routes, rest all routes will be protected routes i.e user will only be able to access these routes after logging in
 
 import { createBrowserRouter } from "react-router-dom";
 import Login from "./pages/login";
@@ -8,8 +8,34 @@ import Home from "./pages/home";
 import CreatePost from "./pages/post";
 import Profile from "./pages/profile";
 import MyPhotos from "./pages/myphotos";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const router = createBrowserRouter([
+  {
+    element: <ProtectedRoutes/>,
+    children: [
+      {
+        path: "/",
+        element: <Home/>,
+        errorElement: <Error/>
+      },
+      {
+        path: "/post",
+        element: <CreatePost/>,
+        errorElement: <Error/>
+      },
+      {
+        path: "/profile",
+        element: <Profile/>,
+        errorElement: <Error/>
+      },
+      {
+        path: "/myphotos",
+        element: <MyPhotos/>,
+        errorElement: <Error/>
+      }  
+    ]
+  },
   {
     path: "/login",
     element: <Login/>,
@@ -18,26 +44,6 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup/>,
-    errorElement: <Error/>
-  },
-  {
-    path: "/home",
-    element: <Home/>,
-    errorElement: <Error/>
-  },
-  {
-    path: "/post",
-    element: <CreatePost/>,
-    errorElement: <Error/>
-  },
-  {
-    path: "/profile",
-    element: <Profile/>,
-    errorElement: <Error/>
-  },
-  {
-    path: "/myphotos",
-    element: <MyPhotos/>,
     errorElement: <Error/>
   }
 ])
